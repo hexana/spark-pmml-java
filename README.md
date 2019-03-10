@@ -13,8 +13,11 @@ This example shows a sample code:
 
 Usage
 Intention for this example is to explain how one can evaluate a given dataset using spark and can save model file as pmml file using pmml libraries.
+
 Example uses a data file in csv format (https://www.kaggle.com/asaumya/healthcare-dataset-stroke-data) and provides code sample to evaluate different columns. 
+
 For example describe a continuous column field ‘age’ provides below stats:
+
 +-------+------------------+
 |summary|               age|
 +-------+------------------+
@@ -27,6 +30,7 @@ For example describe a continuous column field ‘age’ provides below stats:
 
 crosstab stats between two columns ('gender' and 'smoking_status') provides data as below:
 
+
 +---------------------+---------------+------------+----+------+
 |gender_smoking_status|formerly smoked|never smoked|null|smokes|
 +---------------------+---------------+------------+----+------+
@@ -35,10 +39,13 @@ crosstab stats between two columns ('gender' and 'smoking_status') provides data
 |               Female|           4117|       10568|7299|  3681|
 +---------------------+---------------+------------+----+------+
 
+
 spark also provides quantile function which helps to provide percentile data about a column ('bmi' - 25, 50 and 95 percentile):
 (23.2, 27.7, 42.6)
 
+
 groupby feature can provide counts corresponds to different values in a column (different count of 'smoking_status' column):
+
 +---------------+-----+
 | smoking_status|count|
 +---------------+-----+
@@ -51,21 +58,27 @@ groupby feature can provide counts corresponds to different values in a column (
 code shows example of imputing a value 'missing' in categorical column 'smoking_status' and mean value in continuous column 'bmi' and creates new column 'bmi_full'.
 
 To Save a model as a pmml file using spark needs to use RFormula() function. it takes all the columns which is required to be taken as features as well as the label column also.
+
 (In this case 'stroke' is the lable column)
 
 A decision tree model has been used for the example.
 
 Usages (converting model to pmml):
+
 Download the project:
+
 git clone https://github.com/hexana/spark-pmml-java.git
 
 build the project
+
 cd spark-pmml-java; mvn clean install
 
 Example:
+
 spark-submit --packages org.jpmml:jpmml-sparkml:1.4.8 --class com.exm.spark.funplay.Generator --master local[*] <folder location of project jar>/spark-exm-1.0-SNAPSHOT.jar <csv file location>/train_2v.csv <outputlocation>
 
 Usages (using jpmml library to read pmml file and making prediction)
+
 Download the project:
 git clone https://github.com/hexana/jpmml-java.git
 
